@@ -1,6 +1,7 @@
 const grid = document.querySelector(".grid");
 const colors = document.querySelectorAll(".color");
 const gridSizes = document.querySelectorAll(".size");
+const eraser = document.querySelector("#eraser");
 
 let sketchEnabled = false;
 let currentColor = "#1C1C1E"
@@ -45,6 +46,10 @@ colors.forEach((color) => {
 
 gridSizes.forEach((size) => {
   size.addEventListener('click', function() {createGrid(size.id)});
+})
+
+eraser.addEventListener('click', () => {
+  currentColor = '#F5F5DC'
 })
 
 createGrid(12);
