@@ -1,18 +1,16 @@
 const grid = document.querySelector(".grid");
 const colors = document.querySelectorAll(".color");
+const gridSizes = document.querySelectorAll(".size");
 
 let sketchEnabled = false;
+let currentColor = "#1C1C1E"
 
 function color(square) {
   if (sketchEnabled) {
-    square.style.backgroundColor = "black";
+    square.style.backgroundColor = currentColor;
   } else {
     return;
   }
-}
-
-function changeColor () {
-
 }
 
 function createGrid(gridSize) {
@@ -31,13 +29,17 @@ function createGrid(gridSize) {
 }
 
 grid.addEventListener('mousedown', () => {
-  console.log("mouse down");
   sketchEnabled = true;
 })
 
 grid.addEventListener('mouseup', () => {
-  console.log("mouse up");
   sketchEnabled = false;
+})
+
+colors.forEach((color) => {
+  color.addEventListener('click', () => {
+    currentColor = color.id;
+  })
 })
 
 createGrid(12);
