@@ -14,6 +14,7 @@ function color(square) {
 }
 
 function createGrid(gridSize) {
+  grid.innerHTML = "";
   for (g = 0; g < gridSize; g++) {
     const row = document.createElement('div');
     row.classList.add('row');
@@ -40,6 +41,10 @@ colors.forEach((color) => {
   color.addEventListener('click', () => {
     currentColor = color.id;
   })
+})
+
+gridSizes.forEach((size) => {
+  size.addEventListener('click', function() {createGrid(size.id)});
 })
 
 createGrid(12);
