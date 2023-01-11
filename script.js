@@ -1,6 +1,7 @@
 const grid = document.querySelector(".grid");
-let sketchEnabled = false;
+const colors = document.querySelectorAll(".color");
 
+let sketchEnabled = false;
 
 function color(square) {
   if (sketchEnabled) {
@@ -8,6 +9,10 @@ function color(square) {
   } else {
     return;
   }
+}
+
+function changeColor () {
+
 }
 
 function createGrid(gridSize) {
@@ -35,5 +40,4 @@ grid.addEventListener('mouseup', () => {
   sketchEnabled = false;
 })
 
-
-createGrid(10);
+createGrid(12);
