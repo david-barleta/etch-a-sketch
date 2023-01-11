@@ -2,19 +2,27 @@ const body = document.querySelector("body");
 const grid = document.querySelector(".grid");
 const colors = document.querySelectorAll(".color");
 const gridSizes = document.querySelectorAll(".size");
+const gradient = document.querySelector("#gradient");
 const clear = document.querySelector("#clear");
 const eraser = document.querySelector("#eraser");
 
 let sketchEnabled = false;
-let shadingEnabled = true;
+let gradientEnabled = false;
 let currentColor = "#1C1C1E"
 
 function color(square) {
   if (sketchEnabled) {
-    if (shadingEnabled === false) {
+    if (gradientEnabled === false) {
       square.style.backgroundColor = currentColor;
-    } else if (shadingEnabled === true) {
+      square.style.opacity = 1;
+    } else if (gradientEnabled === true) {
       square.style.backgroundColor = currentColor;
+      let opacity = parseFloat(square.style.opacity);
+      console.log(opacity);
+      if(opacity <= 0.9) {
+        square.style.opacity = opacity + 0.30;
+        console.log(square.style.opacity);
+      }
     }
   } else {
     return;
@@ -22,13 +30,34 @@ function color(square) {
 }
 
 function colorFirst(square) {
-  square.style.backgroundColor = currentColor;
+  if (gradientEnabled === false) {
+    square.style.backgroundColor = currentColor;
+    square.style.opacity = 1;
+  } else if (gradientEnabled === true) {
+    square.style.backgroundColor = currentColor;
+    let opacity = parseFloat(square.style.opacity);
+    console.log(opacity);
+    if(opacity <= 0.9) {
+      square.style.opacity = opacity + 0.2;
+      console.log(square.style.opacity);
+    }
+  }
+}
+
+function toggleGradient() {
+  if (gradientEnabled === false) {
+    gradientEnabled = true;
+    gradient.textContent = "Gradient:On";
+  } else {
+    gradientEnabled = false;
+    gradient.textContent = "Gradient:Off";
+  }
 }
 
 function clearGrid() {
   const squares = document.querySelectorAll(".square");
   squares.forEach((square) => {
-    square.style.backgroundColor = "#F5F5DC"
+    square.style.backgroundColor = "#f5f5dc";
   })
 }
 
@@ -42,8 +71,11 @@ function createGrid(gridSize) {
       square.classList.add('square');
       square.setAttribute(`style`, `height: ${500/gridSize}px; width: ${500/gridSize}px`);
       row.appendChild(square);
-      square.addEventListener('mousedown', function() {colorFirst(square)});
-      square.addEventListener('mouseover', function() {color(square)});
+      const div = document.createElement('div');
+      div.setAttribute(`style`, `height: 100%; width: 100%; opacity: 0;`);
+      square.appendChild(div);
+      div.addEventListener('mousedown', function() {colorFirst(div)});
+      div.addEventListener('mouseover', function() {color(div)});
     }
     grid.appendChild(row);
   }
@@ -66,6 +98,8 @@ colors.forEach((color) => {
 gridSizes.forEach((size) => {
   size.addEventListener('click', function() {createGrid(size.id)});
 })
+
+gradient.addEventListener('click', toggleGradient);
 
 clear.addEventListener('click', clearGrid);
 

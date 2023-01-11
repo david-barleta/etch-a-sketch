@@ -20,11 +20,12 @@ body {
 header {
   display: flex;
   justify-content: center;
-  font-size: 48px;
+  color: #1C1C1E;
+  font-size: 36px;
   font-family: "Chivo Mono";
   font-weight: 100;
   margin-top: -45px;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .sketch-area {
@@ -49,8 +50,8 @@ header {
 }
 
 #\#1C1C1E {
-  background-color: rgb(28, 28, 30);
-  border-color: rgb(245, 245, 220);
+  background-color: #1c1c1e;
+  border-color: #f5f5dc;
 }
 
 #\#FFADAD {background-color: #FFADAD;}
@@ -65,7 +66,6 @@ header {
   min-height: 500px;
   min-width: 500px;
   margin: 0px 12px;
-  line-height: 0;
   border-style: solid;
   border-width: 0px 1px 1px 0px;
 }
@@ -84,6 +84,7 @@ header {
   flex-direction: column;
   justify-content: flex-end;
   gap: 15px;
+  color: #1C1C1E;
 }
 
 .size {
@@ -96,13 +97,15 @@ header {
 .options {
   display: flex;
   justify-content: center;
-  font-family: "Chivo Mono";
-  font-weight: 200;
-  font-size: 16px;
-  cursor: pointer;
+  
 }
 
 .option {
   width: 125px;
   text-align: center;
+  color: #1C1C1E;
+  font-family: "Chivo Mono";
+  font-weight: 300;
+  font-size: 16px;
+  cursor: pointer;
 }
