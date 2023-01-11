@@ -1,6 +1,7 @@
 const grid = document.querySelector(".grid");
 const colors = document.querySelectorAll(".color");
 const gridSizes = document.querySelectorAll(".size");
+const clear = document.querySelector("#clear");
 const eraser = document.querySelector("#eraser");
 
 let sketchEnabled = false;
@@ -12,6 +13,13 @@ function color(square) {
   } else {
     return;
   }
+}
+
+function clearGrid() {
+  const squares = document.querySelectorAll(".square");
+  squares.forEach((square) => {
+    square.style.backgroundColor = "#F5F5DC"
+  })
 }
 
 function createGrid(gridSize) {
@@ -47,6 +55,8 @@ colors.forEach((color) => {
 gridSizes.forEach((size) => {
   size.addEventListener('click', function() {createGrid(size.id)});
 })
+
+clear.addEventListener('click', clearGrid);
 
 eraser.addEventListener('click', () => {
   currentColor = '#F5F5DC'
