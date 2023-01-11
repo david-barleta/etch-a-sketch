@@ -49,6 +49,10 @@ header {
   cursor: pointer;
 }
 
+#random {
+  border-style: none;
+}
+
 #\#1C1C1E {
   background-color: #1c1c1e;
   border-color: #f5f5dc;
@@ -97,7 +101,7 @@ header {
 .options {
   display: flex;
   justify-content: center;
-  
+  gap: 80px;
 }
 
 .option {

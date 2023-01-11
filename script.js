@@ -2,6 +2,7 @@ const body = document.querySelector("body");
 const grid = document.querySelector(".grid");
 const colors = document.querySelectorAll(".color");
 const gridSizes = document.querySelectorAll(".size");
+const random = document.querySelector("#random");
 const gradient = document.querySelector("#gradient");
 const clear = document.querySelector("#clear");
 const eraser = document.querySelector("#eraser");
@@ -10,18 +11,39 @@ let sketchEnabled = false;
 let gradientEnabled = false;
 let currentColor = "#1C1C1E"
 
+function pickRandomColor() {
+  let choices = ["#FFADAD", "#FFD6A5", "#FDFFB6", "#CAFFBF", "#A0C4FF", 
+  "#BDB2FF", "#FFC6FF"];
+  let randomChoice = (Math.floor(Math.random()*choices.length));
+  let randomColor = choices[randomChoice];
+  return randomColor;
+}
+
 function color(square) {
   if (sketchEnabled) {
     if (gradientEnabled === false) {
-      square.style.backgroundColor = currentColor;
-      square.style.opacity = 1;
+      if (currentColor === "random") {
+        let randomColor = pickRandomColor();
+        square.style.backgroundColor = randomColor;
+        square.style.opacity = 1;
+      } else {
+        square.style.backgroundColor = currentColor;
+        square.style.opacity = 1;
+      }
     } else if (gradientEnabled === true) {
-      square.style.backgroundColor = currentColor;
-      let opacity = parseFloat(square.style.opacity);
-      console.log(opacity);
-      if(opacity <= 0.9) {
-        square.style.opacity = opacity + 0.30;
-        console.log(square.style.opacity);
+      if (currentColor === "random") {
+        let randomizedColor = pickRandomColor();
+        square.style.backgroundColor = randomizedColor;
+        let opacityTwo = parseFloat(square.style.opacity);
+        if (opacityTwo <= 0.9) {
+          square.style.opacity = opacityTwo + 0.30;
+        }
+      } else {
+        square.style.backgroundColor = currentColor;
+        let opacity = parseFloat(square.style.opacity);
+        if(opacity <= 0.9) {
+          square.style.opacity = opacity + 0.30;
+        }
       }
     }
   } else {
@@ -31,15 +53,28 @@ function color(square) {
 
 function colorFirst(square) {
   if (gradientEnabled === false) {
-    square.style.backgroundColor = currentColor;
-    square.style.opacity = 1;
+    if (currentColor === "random") {
+      let randomColor = pickRandomColor();
+      square.style.backgroundColor = randomColor;
+      square.style.opacity = 1;
+    } else {
+      square.style.backgroundColor = currentColor;
+      square.style.opacity = 1;
+    }
   } else if (gradientEnabled === true) {
-    square.style.backgroundColor = currentColor;
-    let opacity = parseFloat(square.style.opacity);
-    console.log(opacity);
-    if(opacity <= 0.9) {
-      square.style.opacity = opacity + 0.2;
-      console.log(square.style.opacity);
+    if (currentColor === "random") {
+      let randomizedColor = pickRandomColor();
+      square.style.backgroundColor = randomizedColor;
+      let opacityTwo = parseFloat(square.style.opacity);
+      if (opacityTwo <= 0.9) {
+        square.style.opacity = opacityTwo + 0.30;
+      }
+    } else {
+      square.style.backgroundColor = currentColor;
+      let opacity = parseFloat(square.style.opacity);
+      if(opacity <= 0.9) {
+        square.style.opacity = opacity + 0.30;
+      }
     }
   }
 }
@@ -55,7 +90,7 @@ function toggleGradient() {
 }
 
 function clearGrid() {
-  const squares = document.querySelectorAll(".square");
+  const squares = document.querySelectorAll(".square div");
   squares.forEach((square) => {
     square.style.backgroundColor = "#f5f5dc";
   })
